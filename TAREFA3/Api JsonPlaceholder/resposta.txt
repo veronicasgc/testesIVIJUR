@@ -1,0 +1,1 @@
+Se a API JSONPlaceholder exigisse autenticação com um token de acesso, o primeiro passo seria obter o token de acesso seguindo as instruções fornecidas na documentação. Depois armazenar o token em um arquivo separado no código e por fim, fornecer esse token nas chamadas para as funções de requisição.

@@ -1,0 +1,33 @@
+import json
+
+def calcular_total_vendas_e_produto_mais_vendido(arquivo_json):
+    with open(arquivo_json, 'r') as file:
+        dados_vendas = json.load(file)
+
+    total_vendas_por_produto = {}
+    produto_mais_vendido = ""
+    quantidade_produto_mais_vendido = 0
+
+    for venda in dados_vendas:
+        produto = venda['produto']
+        quantidade = venda['quantidade']
+        preco = venda['preco']
+
+        total_vendas = quantidade * preco
+        total_vendas_por_produto[produto] = total_vendas_por_produto.get(produto, 0) + total_vendas
+
+        if quantidade > quantidade_produto_mais_vendido:
+            produto_mais_vendido = produto
+            quantidade_produto_mais_vendido = quantidade
+
+    return total_vendas_por_produto, produto_mais_vendido
+
+
+arquivo_json = 'dados_vendas.json'
+
+total_vendas, produto_mais_vendido = calcular_total_vendas_e_produto_mais_vendido(arquivo_json)
+
+print("Total de vendas por produto:")
+for produto, total in total_vendas.items():
+    print(f"{produto}: {total}")
+print(f"Produto mais vendido: {produto_mais_vendido}")
